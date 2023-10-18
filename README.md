@@ -4,6 +4,7 @@ A mini e-commerce application built with Rails 6.1 for purposes of teaching Rail
 
 ## Setup
 
+0. install (PostgreSQL) rbenv , rbenv global ruby -v 3.1.1
 1. Run `bundle install` to install dependencies
 2. Create `config/database.yml` by copying `config/database.example.yml`
 3. Create `config/secrets.yml` by copying `config/secrets.example.yml`
