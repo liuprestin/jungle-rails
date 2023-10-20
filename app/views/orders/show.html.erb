@@ -4,10 +4,44 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
-  <div class="order-summary jumbotron">
+  <div>
     <h4>Thank you for your order!</h4>
   </div>
+
+
+  <div class="order-summary jumbotron">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price Per Item</th>
+                <th>Total Price</th>
+                <th>Product Image</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <% @order.line_items.each do |item| %>
+                <tr>
+                    <td><%= item.product.name %></td>
+                    <td><%= item.quantity %></td>
+                    <td><%= humanized_money_with_symbol item.item_price %></td> <!-- Used monetize helper -->
+                    <td><%= humanized_money_with_symbol item.total_price %></td> <!-- Used monetize helper -->
+                    <td>
+                        <% if item.product.image.present? %>
+                            <%= image_tag item.product.image.url %>
+                        <% else %>
+                            No image available
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
 
   <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
+
